@@ -1,0 +1,16 @@
+<div class="images-list-section">
+    <div class="text">
+        <h1>Funny images of various breed dogs!</h1>
+        <p>dog, (Canis lupus familiaris), domestic mammal of the family Canidae (order Carnivora). It is a subspecies of
+            the gray
+            wolf (Canis lupus) and is related to foxes and jackals. The dog is one of the two most ubiquitous and most
+            popular
+            domestic animals in the world (the cat is the other). For more than 12,000 years it has lived with humans as
+            a hunting
+            companion, protector, object of scorn or adoration, and friend.</p>
+    </div>
+    <div class="images-list" *ngIf="dogImages | async as images">
+        <app-image *ngFor="let item of images; let i = index" [url]="item" [index]="i" (open)="openImage($event)">
+        </app-image>
+    </div>
+</div>
