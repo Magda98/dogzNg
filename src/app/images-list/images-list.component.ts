@@ -1,7 +1,7 @@
 import { DogImagesService } from './../services/dog-images.service';
 import { Component, OnInit } from '@angular/core';
 import { debounce, debounceTime, fromEvent, Observable } from 'rxjs';
-import { IAlbum, Lightbox } from 'ngx-lightbox';
+import { IAlbum, Lightbox, LightboxConfig } from 'ngx-lightbox';
 
 
 
@@ -15,9 +15,12 @@ export class ImagesListComponent implements OnInit {
   private _album: IAlbum[];
   onScroll$ = fromEvent(window, "scroll").pipe(debounceTime(200));
 
-  constructor(private dogImagesService: DogImagesService, private _lightbox: Lightbox) { 
+  constructor(private dogImagesService: DogImagesService, private _lightbox: Lightbox, private _lightboxConfig: LightboxConfig) { 
     this.dogImages = this.dogImagesService.getDogImages();
     this._album = [];
+    this._lightboxConfig.centerVertically = true;
+    this._lightboxConfig.showZoom= true;
+    this._lightboxConfig.showDownloadButton = true;
   }
 
   getDogzOnScroll = () => {
