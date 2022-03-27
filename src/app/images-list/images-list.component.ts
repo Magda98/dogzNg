@@ -19,7 +19,6 @@ export class ImagesListComponent implements OnInit {
     this.dogImages = this.dogImagesService.getDogImages();
     this._album = [];
     this._lightboxConfig.centerVertically = true;
-    this._lightboxConfig.showZoom= true;
     this._lightboxConfig.showDownloadButton = true;
   }
 
