@@ -2,7 +2,7 @@ import { DogImagesService } from './../services/dog-images.service';
 import { Component, OnInit } from '@angular/core';
 import { debounce, debounceTime, fromEvent, Observable } from 'rxjs';
 import { Lightbox } from 'ng-gallery/lightbox';
-import { Gallery, GalleryItem, ImageItem } from 'ng-gallery';
+import { Gallery, ImageItem } from 'ng-gallery';
 
 
 
