@@ -5,7 +5,7 @@ import { ImageListBreedComponent } from './image-list-breed/image-list-breed.com
 
 const routes: Routes = [
   { path: '', component: ImagesListComponent },
-  { path: 'breed', component: ImageListBreedComponent },
+  { path: 'breeds', component: ImageListBreedComponent },
 ];
 
 @NgModule({

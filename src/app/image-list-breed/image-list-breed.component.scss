@@ -1,6 +1,4 @@
-$glass: rgba(255, 255, 255, 0.2);
-$glass-icon: rgba(255, 255, 255, 0.3);
-$text: #54358d;
+@use "../../stylings/variables.scss" as *;
 
 .images-list {
   margin-top: 50px;

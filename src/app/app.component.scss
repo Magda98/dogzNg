@@ -1,0 +1,41 @@
+@use "../stylings/variables.scss" as *;
+
+.nav {
+  display: flex;
+  background-color: rgba(196, 169, 255, 0.95);
+  justify-content: center;
+  padding: 10px 0;
+  box-shadow: 0 1px 6px 0 rgb(32 33 36 / 28%);
+  position: fixed;
+  width: 100%;
+  top: 0;
+
+  .ul {
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0;
+
+    .link {
+      color: $text-dark;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      border-radius: 10px;
+      margin: 0 5px;
+      transition: color 0.3s, background-color 0.3s;
+
+      &:hover {
+        background-color: $glass-icon;
+        color: $text;
+      }
+    }
+  }
+}
+
+.container {
+  width: calc(100% - 30px);
+  margin: 0 15px;
+}
