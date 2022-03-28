@@ -10,7 +10,7 @@
             companion, protector, object of scorn or adoration, and friend.</p>
     </div>
     <div class="images-list" *ngIf="dogImages | async as images">
-        <app-image *ngFor="let item of images; let i = index" [url]="item" [index]="i" (open)="openImage($event)">
+        <app-image *ngFor="let item of images; let i = index" [url]="item" [index]="i" [lightbox]="i">
         </app-image>
     </div>
 </div>

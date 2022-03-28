@@ -8,15 +8,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class ImageComponent implements OnInit {
   @Input() url!: string;
   @Input() index!: number;
-  @Output() open: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
-  openImage() {
-    this.open.emit(this.index);
-  }
-
 }

@@ -1,7 +1,8 @@
 import { DogImagesService } from './../services/dog-images.service';
 import { Component, OnInit } from '@angular/core';
 import { debounce, debounceTime, fromEvent, Observable } from 'rxjs';
-import { IAlbum, Lightbox, LightboxConfig } from 'ngx-lightbox';
+import { Lightbox } from 'ng-gallery/lightbox';
+import { Gallery, GalleryItem, ImageItem } from 'ng-gallery';
 
 
 
@@ -12,14 +13,12 @@ import { IAlbum, Lightbox, LightboxConfig } from 'ngx-lightbox';
 })
 export class ImagesListComponent implements OnInit {
   dogImages: Observable<string[]>
-  private _album: IAlbum[];
   onScroll$ = fromEvent(window, "scroll").pipe(debounceTime(200));
+  
 
-  constructor(private dogImagesService: DogImagesService, private _lightbox: Lightbox, private _lightboxConfig: LightboxConfig) { 
+
+  constructor(private dogImagesService: DogImagesService, private gallery: Gallery, private lightbox: Lightbox) { 
     this.dogImages = this.dogImagesService.getDogImages();
-    this._album = [];
-    this._lightboxConfig.centerVertically = true;
-    this._lightboxConfig.showDownloadButton = true;
   }
 
   getDogzOnScroll = () => {
@@ -33,20 +32,19 @@ export class ImagesListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dogImages.subscribe((images) => {
-      this._album = images.map(src =>
-        ({ src, thumb: src })
-      )
+    this.dogImages.subscribe((data) => {
+      const items = data.map(item =>
+        new ImageItem({
+          src: item,
+          thumb: item
+        }
+        ));
+      this.gallery.ref().load(items);
     });
 
     this.onScroll$.subscribe(() => {
       this.getDogzOnScroll();
-    })
-  }
-
-  openImage(index: number) {
-    this._lightbox.open(this._album, index);
-    console.log(index)
+    });
   }
 
 }

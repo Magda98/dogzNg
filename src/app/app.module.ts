@@ -5,20 +5,37 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ImageComponent } from './image/image.component';
 import { ImagesListComponent } from './images-list/images-list.component';
-import { LightboxModule } from 'ngx-lightbox';
+import { ImageListBreedComponent } from './image-list-breed/image-list-breed.component';
+import { GalleryModule } from 'ng-gallery';
+import { LIGHTBOX_CONFIG, LightboxModule  } from 'ng-gallery/lightbox';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     ImageComponent,
-    ImagesListComponent
+    ImagesListComponent,
+    ImageListBreedComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    LightboxModule
+    GalleryModule,
+    LightboxModule,
+    BrowserAnimationsModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: LIGHTBOX_CONFIG,
+      useValue: {
+        keyboardShortcuts: false
+      }
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
