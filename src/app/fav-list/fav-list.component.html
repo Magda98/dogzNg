@@ -1,0 +1,9 @@
+<div class="images-list-section">
+    <div class="text">
+        <h1>Fav images</h1>
+    </div>
+    <div class="images-list" *ngIf="dogImages | async as images">
+        <app-image *ngFor="let item of images; let i = index" [url]="item" [index]="i" [lightbox]="i">
+        </app-image>
+    </div>
+</div>

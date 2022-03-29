@@ -10,6 +10,7 @@ import { GalleryModule } from 'ng-gallery';
 import { LIGHTBOX_CONFIG, LightboxModule  } from 'ng-gallery/lightbox';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { FavListComponent } from './fav-list/fav-list.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { FormsModule } from '@angular/forms';
     ImageComponent,
     ImagesListComponent,
     ImageListBreedComponent,
+    FavListComponent,
   ],
   imports: [
     BrowserModule,

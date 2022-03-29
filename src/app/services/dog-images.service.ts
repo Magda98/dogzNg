@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { StorageService } from './storage.service';
 
 interface ApiResponseImages {
   message: string[],
@@ -19,17 +20,47 @@ export class DogImagesService {
   dogImages = new BehaviorSubject<string[]>([]);
   dogBreeds = new BehaviorSubject<string[]>([]);
   dogBreedImages = new BehaviorSubject<string[]>([]);
+  dogFavImages = new BehaviorSubject<string[]>([]);
   selectedBreed = new BehaviorSubject<string>("");
 
   baseUrl = "https://dog.ceo/api/";
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private storage: StorageService) {
     this.retriveDogImages();
     this.retriveDogBreeds();
-    this.selectedBreed.subscribe(() => this.dogBreedImages.next([]))
+    this.getFavImagesStorage();
+    this.selectedBreed.subscribe(() => this.dogBreedImages.next([]));
+  }
+
+  addFavImage(url: string) {
+    this.dogFavImages.next(this.dogFavImages.getValue().concat(url));
+    this.setFavItemsStorage();
+  }
+
+  removeFavImage(url: string) {
+    const temp = this.dogFavImages.getValue().filter((item) => item !== url);
+    this.dogFavImages.next(temp);
+    this.setFavItemsStorage();
+  }
+
+  checkIfFav(url: string) {
+    const check = this.dogFavImages.getValue().find(item => item === url) ? true : false;
+    return check;
   }
   
+  getFavImagesStorage() {
+    this.dogFavImages.next(this.storage.getData("fav"));
+  }
+
+  setFavItemsStorage() {
+    this.storage.setData("fav", this.dogFavImages.getValue());
+  }
+
+  getFavImages() {
+    return this.dogFavImages.asObservable();
+  }
+
   getDogImages() {
     return this.dogImages.asObservable();
   }
